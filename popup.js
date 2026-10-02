@@ -18,6 +18,7 @@ function switchToPage(page) {
     else if (page === "nocookie") loadNoCookie();
     else if (page === "livecss") loadLiveCSS();
     else if (page === "unhook") loadUnhook();
+    else if (page === "rumbleunhook") loadRumbleUnhook();
     else if (page === "xunhook") loadXUnhook();
     else if (page === "xreply") loadXReply();
     else if (page === "photopea") loadPhotopea();
@@ -785,6 +786,62 @@ unhookFeatureEls.forEach((el) => {
     el.classList.toggle("off", !features[key]);
     await chrome.storage.local.set({ unhook_features: features });
     await pushUnhookState();
+  });
+});
+
+// ═══════════════════════════════════
+//  Rumble Unhook
+// ═══════════════════════════════════
+const rumbleunhookToggle = document.getElementById("rumbleunhookToggle");
+const rumbleunhookStatus = document.getElementById("rumbleunhookStatus");
+const rumbleunhookFeatureEls = document.querySelectorAll("#rumbleunhookFeatures .unhook-feature");
+
+async function getRumbleUnhookFeatures() {
+  const data = await chrome.storage.local.get(["rumbleunhook_features"]);
+  return { ...UNHOOK_FEATURE_DEFAULTS, ...(data.rumbleunhook_features || {}) };
+}
+
+async function loadRumbleUnhook() {
+  const data = await chrome.storage.local.get(["rumbleunhook_enabled"]);
+  const enabled = data.rumbleunhook_enabled !== false;
+  rumbleunhookToggle.checked = enabled;
+  updateRumbleUnhookUI(enabled);
+  const features = await getRumbleUnhookFeatures();
+  rumbleunhookFeatureEls.forEach((el) => {
+    el.classList.toggle("off", features[el.dataset.feature] === false);
+  });
+}
+
+function updateRumbleUnhookUI(on) {
+  rumbleunhookStatus.textContent = on ? "ON" : "OFF";
+  rumbleunhookStatus.className = "status " + (on ? "on" : "off");
+}
+
+async function pushRumbleUnhookState() {
+  const data = await chrome.storage.local.get(["rumbleunhook_enabled"]);
+  const enabled = data.rumbleunhook_enabled !== false;
+  const features = await getRumbleUnhookFeatures();
+  const [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
+  if (tab) {
+    chrome.tabs.sendMessage(tab.id, { type: "rumbleunhook_toggle", enabled, features }).catch(() => {});
+  }
+}
+
+rumbleunhookToggle.addEventListener("change", async () => {
+  const enabled = rumbleunhookToggle.checked;
+  updateRumbleUnhookUI(enabled);
+  await chrome.storage.local.set({ rumbleunhook_enabled: enabled });
+  await pushRumbleUnhookState();
+});
+
+rumbleunhookFeatureEls.forEach((el) => {
+  el.addEventListener("click", async () => {
+    const features = await getRumbleUnhookFeatures();
+    const key = el.dataset.feature;
+    features[key] = !features[key];
+    el.classList.toggle("off", !features[key]);
+    await chrome.storage.local.set({ rumbleunhook_features: features });
+    await pushRumbleUnhookState();
   });
 });
 
