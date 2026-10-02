@@ -767,6 +767,7 @@
     <button data-page="nocookie">🚫 Cookies=OK</button>
     <button data-page="livecss">🎨 CSS</button>
     <button data-page="unhook">📺 YT Unhook</button>
+    <button data-page="rumbleunhook">🟢 Rumble Unhook</button>
     <button data-page="music">🎵 Music</button>
     <button data-page="summarize">✨ Summarize</button>
     <button data-page="pip">🖼 PiP</button>
@@ -1078,6 +1079,33 @@
         <div class="unhook-feature clickable" data-feature="sidebar"><span class="check">✓</span> No sidebar suggestions</div>
         <div class="unhook-feature clickable" data-feature="endscreen"><span class="check">✓</span> No end screen overlays</div>
         <div class="unhook-feature clickable" data-feature="shorts"><span class="check">✓</span> No Shorts shelves</div>
+        <div class="unhook-feature clickable" data-feature="wider"><span class="check">✓</span> Wider video player</div>
+      </div>
+
+      <div class="xdim-note" style="margin-top:10px">
+        Click a feature to toggle it on/off.<br>
+        Search still works — just no recommendations.
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ Rumble Unhook Page ═══ -->
+  <div class="page" id="page-rumbleunhook">
+    <div class="page-body">
+      <div class="unhook-big-toggle">
+        <div class="yticon">🟢</div>
+        <label class="big-switch">
+          <input type="checkbox" id="rumbleunhookToggle" checked>
+          <span class="big-slider"></span>
+        </label>
+        <div class="status on" id="rumbleunhookStatus">ON</div>
+      </div>
+
+      <div class="unhook-features" id="rumbleunhookFeatures">
+        <div class="unhook-feature clickable" data-feature="homepage"><span class="check">✓</span> Black homepage — no feed</div>
+        <div class="unhook-feature clickable" data-feature="sidebar"><span class="check">✓</span> No related videos sidebar</div>
+        <div class="unhook-feature clickable" data-feature="endscreen"><span class="check">✓</span> No "Up next" / autoplay overlay</div>
+        <div class="unhook-feature clickable" data-feature="shorts"><span class="check">✓</span> No Shorts rows, cards or nav link</div>
         <div class="unhook-feature clickable" data-feature="wider"><span class="check">✓</span> Wider video player</div>
       </div>
 

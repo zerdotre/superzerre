@@ -6,7 +6,7 @@ by [@levelsio](https://x.com/levelsio)
 
 Please star SuperLevels if you like it!
 
-A super Chrome extension that replaces 12+ separate extensions with one open-source, privacy-respecting package.
+A super Chrome extension that replaces 13+ separate extensions with one open-source, privacy-respecting package.
 
 Most Chrome extensions are closed-source malware/spyware-filled garbage that form a massive security risk. This one is open source and you can read and check the source code (with AI) before you install it, and customize it to your liking!
 
@@ -53,6 +53,9 @@ Write custom CSS for any website, applied in real-time as you type. Saved per-do
 
 ### 📺 YouTube Unhook
 Removes YouTube distractions: no homepage feed, no sidebar suggestions, no end screen overlays, no Shorts. Search still works — just no algorithmic recommendations.
+
+### 🟢 Rumble Unhook
+The same treatment for [rumble.com](https://rumble.com): no homepage feed, no related-videos sidebar, no "Up next" autoplay overlay, no Shorts rows/cards/nav link, and a wider player. Each feature can be toggled individually in the popup.
 
 ### 🫛 Photopea No Ads
 Hides the 320px ad column on [photopea.com](https://www.photopea.com) and expands the editor to the full window width (Photopea sizes the editor from `window.innerWidth - 320`, so a main-world script reports the window as 320px wider). Toggle in the popup.
